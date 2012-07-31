@@ -16,21 +16,32 @@ class AuthenticationController extends Zend_Controller_Action
 
     public function loginAction()
     {
-        // action body
+    	if (Zend_Auth::getInstance()->hasIdentity()){
+    		$this->_redirect('index/index');
+    	}
+       // create Login form
+        $form= new Application_Form_Login();
+        $this->view->form = $form;
+    	// check users DB content, if empty create user "admin"
     	$usersDb = new Application_Model_DbTable_Users();
-    	$usersDb->initSuperUser(); // initialize admin default user
-        $username='admin';
-        $userPassword=Application_Model_DbTable_Users::PASSWORD_SALT . 'amrgi3009';
+    	$usersDb->initUsers();// check if empty--> create admin default user
+		// test authoentication
+        $username='wrong';
+        $userPassword = Application_Model_DbTable_Users::PASSWORD_SALT . 'admin';//adding constant salt to users password
         $authAdapter=$this->getAuthAdapter();
         $authAdapter->setIdentity($username)
                     ->setCredential($userPassword);// need to encode password
         $auth = Zend_Auth::getInstance();
         $result=$auth->authenticate($authAdapter);
         if ($result->isValid()){
-        	echo 'valid user';
+        	 $userAttrib = $authAdapter->getResultRowObject();
+        	 $authStorage = $auth->getStorage();
+        	 $authStorage->write($userAttrib);
+        	 $this->_redirect('index/index');       	 
+        	
         } 
         else {
-        	echo 'invalid user';
+        	;
         }
                       
     }
@@ -41,10 +52,10 @@ class AuthenticationController extends Zend_Controller_Action
     }
     private function getAuthAdapter(){
     	$authAdapter = new Zend_Auth_Adapter_DbTable(Zend_Db_Table::getDefaultAdapter());
-    	$authAdapter->setTableName('users')
+    	$authAdapter->setTableName('cc_users')
     				->setIdentityColumn('username')
     				->setCredentialColumn('password')
-    				->setCredentialTreatment(('SHA1(?)) AND state = 1'));
+    				->setCredentialTreatment('SHA1(?)');
     	// 
     	return $authAdapter;
     				

@@ -10,10 +10,13 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-    	// check login DB temporary
-//    	$usersDb = new Application_Model_DbTable_Users();
-//    	$users=$usersDb->fetchAll();
-//    	$usersDb->initSuperUser ();
+    	//testing initSuperUser
+    	// check users DB content 
+ //    	$usersDb = new Application_Model_DbTable_Users();
+ //    	$usersDb->initUsers();
+     	
+// end of test
+     	
     	// action body
     	$albums = new Application_Model_DbTable_Albums();
     	$this->view->albums = $albums->fetchAll();
