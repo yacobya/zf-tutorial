@@ -27,17 +27,17 @@ class AuthenticationController extends Zend_Controller_Action
     	$usersDb = new Application_Model_DbTable_Users();
     	$usersDb->initUsers();// check if empty--> create admin default user
 
+    	$form= new Application_Form_Login();// create login form
+    	
     	// determine if POST perfromed
-    	$form= new Application_Form_Login();
-
     	if ($this->getRequest()->isPost() ){
     		if ($form->isValid($this->_request->getPost())){
 
     			//user tried to login. Check authoentication
-    			// read assign username and password
+    			// read assigned username and password
     			$username = $form->getValue('username');
     			$password = $form->getValue('password');
-    			//add password salt
+    			//add password salt infront of user entere3d password
     			$password = Application_Model_DbTable_Users::PASSWORD_SALT . $password;
     			
     			$authAdapter=$this->getAuthAdapter();
@@ -54,7 +54,7 @@ class AuthenticationController extends Zend_Controller_Action
     				$this->_redirect('index/index');
     			}else{ //user not authorized - return to login form
     				// set error message
-    	 		 	$this->view->errorMsg = 'illgal password or username<br>';
+    	 		 	$this->view->errorMsg = 'User name or password are wrong<br>';
     				$this->view->form = $form;
     			}
     		}
@@ -73,8 +73,7 @@ class AuthenticationController extends Zend_Controller_Action
     public function logoutAction()
     {
     	Zend_Auth::getInstance()->clearIdentity();
-    	$this->_redirect('index/index');
-
+    	$this->_redirect('authentication/login');
     }
     
     private function getAuthAdapter(){
