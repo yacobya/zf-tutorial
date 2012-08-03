@@ -2,24 +2,26 @@
 
 class IndexController extends Zend_Controller_Action
 {
-
+	private $_auth=null;
+	private $username=null;
     public function init()
     {
         /* Initialize action controller here */
+    	//get user name
+    	$this->_auth = Zend_Auth::getInstance();
+    	$this->username = $this->_auth->getStorage()->read()->username;
+    	
+    	 
     }
 
     public function indexAction()
     {
-    	//testing initSuperUser
-    	// check users DB content 
- //    	$usersDb = new Application_Model_DbTable_Users();
- //    	$usersDb->initUsers();
-     	
-// end of test
-     	
-    	// action body
+    	// fetch all users from DB and send it to viewer
     	$albums = new Application_Model_DbTable_Albums();
     	$this->view->albums = $albums->fetchAll();
+    	$this->_auth = Zend_Auth::getInstance();
+    	$this->view->user= $this->username;
+    		 
     }
 
     public function addAction()

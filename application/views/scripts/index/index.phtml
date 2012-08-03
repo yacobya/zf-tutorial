@@ -4,6 +4,7 @@ $this->headTitle($this->title);
 ?>
 <p><a href="<?php echo $this->url(array('controller'=>'index',
 'action'=>'add'));?>">Add new album</a></p>
+
 <table>
 <tr>
 <th>Title</th>
@@ -23,3 +24,5 @@ $this->headTitle($this->title);
 </tr>
 <?php endforeach; ?>
 </table>
+<p><a href="<?php echo $this->url(array('controller'=>'UsersManagement',
+'action'=>'index'));?>">Users Management</a></p>
