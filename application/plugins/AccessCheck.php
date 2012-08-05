@@ -23,7 +23,7 @@ class Application_Plugin_AccessCheck extends Zend_Controller_Plugin_Abstract{
 			case 'index':
 				$this->_acl = new Application_Model_Acl_Albums();
 				break;
-			case 'usersmanagement':	
+			case 'UsersManagement':	
 				$this->_acl = new Application_Model_Acl_Users();
 				break;
 			default:

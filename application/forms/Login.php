@@ -8,17 +8,21 @@ class Application_Form_Login extends Zend_Form
 		$this->setName("login");
 		$username = new Zend_Form_Element_Text('username');
 		$username->setLabel("User name: ")
-				 ->setRequired(TRUE);
-		$password =  new Zend_Form_Element_Password('password');
+				 ->setRequired(TRUE)
+				 ->addFilter('StripTags');
+				 //->addFilter('StripTrim');
+	    $password =  new Zend_Form_Element_Password('password');
 		$password->setLabel('Password:')
-				 ->setRequired(TRUE);
-				 
+				 ->setRequired(TRUE)
+			     ->addFilter('StripTags');
+				 //->addFilter('StripTrim');
+		
 		$login =  new Zend_Form_Element_Submit('login');
 		$login->setLabel('Login');
 		
 		$this->addElements (array ($username, $password, $login));
 		$this->setMethod('post');
-		$this->setAction(Zend_Controller_Front::getInstance()->getBaseUrl().'/authentication/login');
+		$this->setAction(Zend_Controller_Front::getInstance()->getBaseUrl().'/Authentication/login');
 	}
     public function init()
     {

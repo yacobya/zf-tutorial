@@ -1,144 +1,145 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 <projectProfile type="default" version="1.11.11">
   <projectDirectory>
-    <projectProfileFile filesystemName=".zfproject.xml" />
+    <projectProfileFile filesystemName=".zfproject.xml"/>
     <applicationDirectory classNamePrefix="Application_">
-      <apisDirectory enabled="false" />
+      <apisDirectory enabled="false"/>
       <configsDirectory>
-        <applicationConfigFile type="ini" />
+        <applicationConfigFile type="ini"/>
       </configsDirectory>
       <controllersDirectory>
         <controllerFile controllerName="Index">
-          <actionMethod actionName="index" />
-          <actionMethod actionName="add" />
-          <actionMethod actionName="edit" />
-          <actionMethod actionName="delete" />
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="add"/>
+          <actionMethod actionName="edit"/>
+          <actionMethod actionName="delete"/>
         </controllerFile>
-        <controllerFile controllerName="Error" />
+        <controllerFile controllerName="Error"/>
         <controllerFile controllerName="Authentication">
-          <actionMethod actionName="index" />
-          <actionMethod actionName="login" />
-          <actionMethod actionName="logout" />
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="login"/>
+          <actionMethod actionName="logout"/>
         </controllerFile>
         <controllerFile controllerName="UsersManagement">
-          <actionMethod actionName="index" />
-          <actionMethod actionName="add" />
-          <actionMethod actionName="delete" />
-          <actionMethod actionName="edit" />
-          <actionMethod actionName="list" />
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="add"/>
+          <actionMethod actionName="delete"/>
+          <actionMethod actionName="edit"/>
+          <actionMethod actionName="list"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
-        <formFile formName="Album" />
-        <formFile formName="Login" />
+        <formFile formName="Album"/>
+        <formFile formName="Login"/>
+        <formFile formName="User"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
-          <layoutScriptFile layoutName="layout" />
+          <layoutScriptFile layoutName="layout"/>
         </layoutScriptsDirectory>
       </layoutsDirectory>
       <modelsDirectory>
         <dbTableDirectory>
-          <dbTableFile dbTableName="Albums" />
-          <dbTableFile dbTableName="Users" />
+          <dbTableFile dbTableName="Albums"/>
+          <dbTableFile dbTableName="Users"/>
         </dbTableDirectory>
       </modelsDirectory>
-      <modulesDirectory enabled="false" />
+      <modulesDirectory enabled="false"/>
       <viewsDirectory>
         <viewScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
-            <viewScriptFile forActionName="index" />
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Error">
-            <viewScriptFile forActionName="error" />
+            <viewScriptFile forActionName="error"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
-            <viewScriptFile forActionName="add" />
+            <viewScriptFile forActionName="add"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
-            <viewScriptFile forActionName="edit" />
+            <viewScriptFile forActionName="edit"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
-            <viewScriptFile forActionName="delete" />
+            <viewScriptFile forActionName="delete"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Authentication">
-            <viewScriptFile forActionName="index" />
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Authentication">
-            <viewScriptFile forActionName="login" />
+            <viewScriptFile forActionName="login"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Authentication">
-            <viewScriptFile forActionName="logout" />
+            <viewScriptFile forActionName="logout"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="UsersManagement">
-            <viewScriptFile forActionName="index" />
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="UsersManagement">
-            <viewScriptFile forActionName="add" />
+            <viewScriptFile forActionName="add"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="UsersManagement">
-            <viewScriptFile forActionName="delete" />
+            <viewScriptFile forActionName="delete"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="UsersManagement">
-            <viewScriptFile forActionName="edit" />
+            <viewScriptFile forActionName="edit"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="UsersManagement">
-            <viewScriptFile forActionName="list" />
+            <viewScriptFile forActionName="list"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
-        <viewHelpersDirectory />
-        <viewFiltersDirectory enabled="false" />
+        <viewHelpersDirectory/>
+        <viewFiltersDirectory enabled="false"/>
       </viewsDirectory>
-      <bootstrapFile filesystemName="Bootstrap.php" />
+      <bootstrapFile filesystemName="Bootstrap.php"/>
     </applicationDirectory>
     <dataDirectory enabled="false">
-      <cacheDirectory enabled="false" />
-      <searchIndexesDirectory enabled="false" />
-      <localesDirectory enabled="false" />
-      <logsDirectory enabled="false" />
-      <sessionsDirectory enabled="false" />
-      <uploadsDirectory enabled="false" />
+      <cacheDirectory enabled="false"/>
+      <searchIndexesDirectory enabled="false"/>
+      <localesDirectory enabled="false"/>
+      <logsDirectory enabled="false"/>
+      <sessionsDirectory enabled="false"/>
+      <uploadsDirectory enabled="false"/>
     </dataDirectory>
     <docsDirectory>
-      <file filesystemName="README.txt" />
+      <file filesystemName="README.txt"/>
     </docsDirectory>
     <libraryDirectory>
-      <zfStandardLibraryDirectory enabled="false" />
+      <zfStandardLibraryDirectory enabled="false"/>
     </libraryDirectory>
     <publicDirectory>
-      <publicStylesheetsDirectory enabled="false" />
-      <publicScriptsDirectory enabled="false" />
-      <publicImagesDirectory enabled="false" />
-      <publicIndexFile filesystemName="index.php" />
-      <htaccessFile filesystemName=".htaccess" />
+      <publicStylesheetsDirectory enabled="false"/>
+      <publicScriptsDirectory enabled="false"/>
+      <publicImagesDirectory enabled="false"/>
+      <publicIndexFile filesystemName="index.php"/>
+      <htaccessFile filesystemName=".htaccess"/>
     </publicDirectory>
-    <projectProvidersDirectory enabled="false" />
-    <temporaryDirectory enabled="false" />
+    <projectProvidersDirectory enabled="false"/>
+    <temporaryDirectory enabled="false"/>
     <testsDirectory>
-      <testPHPUnitConfigFile filesystemName="phpunit.xml" />
-      <testPHPUnitBootstrapFile filesystemName="bootstrap.php" />
+      <testPHPUnitConfigFile filesystemName="phpunit.xml"/>
+      <testPHPUnitBootstrapFile filesystemName="bootstrap.php"/>
       <testApplicationDirectory>
         <testApplicationControllerDirectory>
           <testApplicationControllerFile forControllerName="Index">
-            <testApplicationActionMethod forActionName="add" />
-            <testApplicationActionMethod forActionName="edit" />
-            <testApplicationActionMethod forActionName="delete" />
+            <testApplicationActionMethod forActionName="add"/>
+            <testApplicationActionMethod forActionName="edit"/>
+            <testApplicationActionMethod forActionName="delete"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Authentication">
-            <testApplicationActionMethod forActionName="index" />
-            <testApplicationActionMethod forActionName="login" />
-            <testApplicationActionMethod forActionName="logout" />
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="login"/>
+            <testApplicationActionMethod forActionName="logout"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="UsersManagement">
-            <testApplicationActionMethod forActionName="index" />
-            <testApplicationActionMethod forActionName="add" />
-            <testApplicationActionMethod forActionName="delete" />
-            <testApplicationActionMethod forActionName="edit" />
-            <testApplicationActionMethod forActionName="list" />
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="add"/>
+            <testApplicationActionMethod forActionName="delete"/>
+            <testApplicationActionMethod forActionName="edit"/>
+            <testApplicationActionMethod forActionName="list"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
-      <testLibraryDirectory />
+      <testLibraryDirectory/>
     </testsDirectory>
   </projectDirectory>
 </projectProfile>
