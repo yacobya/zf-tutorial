@@ -10,9 +10,18 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
     
     protected $passwordSalt='amrgi3009'; //using constant salt for users password
     
-    public function getUser($username)
+    public function getUserById($id)
     {
-    	$userQuery='username = ' . "$username";
+    	$userQuery='id = ' . "$id";
+    	$row = $this->fetchRow($userQuery);
+    	if (!$row) {
+    		throw new Exception("Could not find row $id");
+    	}
+    	return $row->toArray();
+    }
+    public function getUser($key,$keyValue)
+    {
+    	$userQuery= "$key = " . "$keyValue";
     	$row = $this->fetchRow($userQuery);
     	if (!$row) {
     		throw new Exception("Could not find row $id");
@@ -23,17 +32,17 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
     {
     	$data = array(
     			'username'=> $username,
-    			'password'=> sha1($passwordSalt . $userPassword),
+    			'password'=> ( sha1((self::PASSWORD_SALT . $userPassword))),
     			'role' => $userRole
     			);
     	$this->insert($data);
     }
    
-    public function deleteUser($username)
+    public function deleteUser($key, $keyValue)
     {
-    	$this->delete('username =' . $username);
+    	$this->delete("$key =" . $keyValue);
     }
-    
+  
     public function initUsers ()
     {
     	$users=$this->fetchAll();

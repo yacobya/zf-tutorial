@@ -15,10 +15,3 @@ Class Application_Model_Acl_Albums extends Zend_Acl {
 		
 	}
 }
-/*
- * 		$acl->addRole(new Zend_Acl_Role('user'));
-		$acl->addRole(new Zend_Acl_Role('admin'),'user');
-		$acl->addRole(new Zend_Acl_Role('fieldEngineer'),'admin');
-		$acl->addRole(new Zend_Acl_Role('superUser'),'FieldEngineer');
-
- */

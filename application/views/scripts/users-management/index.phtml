@@ -1,0 +1,22 @@
+<?php
+$this->title = "Users";
+$this->headTitle($this->title);
+?>
+<table>
+<tr>
+<th>Name</th>
+<th>&nbsp;</th>
+</tr>
+<?php foreach($this->usersData as $user) : ?>
+<tr>
+<td><?php echo $this->escape($user->username);?></td>
+<td><?php echo $this->escape($user->role);?></td>
+<td>
+<a href="<?php echo $this->url(array('controller'=>'UsersManagement',
+'action'=>'delete', 'id'=>$user->id));?>">Delete</a>
+</td>
+</tr>
+<?php endforeach; ?>
+</table>
+<p><a href="<?php echo $this->url(array('controller'=>'UsersManagement',
+'action'=>'add'));?>">Add user</a></p>
