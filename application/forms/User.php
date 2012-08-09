@@ -37,21 +37,20 @@ class Application_Form_User extends Zend_Form
     	
     	$roleSelect->setLabel('userRole');
 		foreach (Application_Model_Acl_Lib::$_cc_roles as $role){
-			$roleSelection["$role"]=$role;
+			$roleSelection[$role]=$role;
 		}
 
 		// set role selection
     	$roleSelect->setMultiOptions($roleSelection)
     	    	->setRequired(true)->addValidator('NotEmpty', true)
     			->setLabel('useRole')
-    			->setRequired(true);;
-    	
-    	
-    
-    	
+    			->setRequired(true);
+    	  	
+       	
     	$this->addElements(array($id, $username, $password, $passwordValid,$roleSelect,$submitAddUser));
     	$this->setMethod('post'); 
-    	$this->setAction(Zend_Controller_Front::getInstance()->getBaseUrl().'/UsersManagement/add');
+    	$this->setAttrib('onsubmit','return checkPassConfirm()');
+     	$this->setAction(Zend_Controller_Front::getInstance()->getBaseUrl().'/UsersManagement/add');
   	 
     }
-}
+} 		
