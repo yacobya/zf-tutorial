@@ -1,26 +1,11 @@
 <div id="view-content">
-	<?php 
+<?php 
 	$this->title = "Add new User";
 	$this->headTitle($this->title);
 	echo $this->form;
+	$jsFile='/zf-tutorial/application/views/scripts/users-management/checkNewUser.js';
+	$this->headScript()->appendFile($jsFile);//java script to filter errors
 	?>
 	<br>
 	<p id="errMsg">  </p>
 </div>
-<script type="text/javascript">
-function checkPassConfirm()
-{
-	var password, passwordValid;
-	password = document.getElementById('password').value;
-	passwordValid = document.getElementById('passwordValid').value;
-	confirm = (password===passwordValid)?true : false;// check password confirmation
-	if (!confirm)
-	{
-//		document.write("<p>error confirmation</p>");
-		document.getElementById("errMsg").innerHTML="Password confirmation error";
-		alert ('WRONG confirmation');
-	}
-		
-	return confirm;
-}
-</script>
