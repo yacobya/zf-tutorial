@@ -49,7 +49,7 @@ class Application_Form_User extends Zend_Form
        	
     	$this->addElements(array($id, $username, $password, $passwordValid,$roleSelect,$submitAddUser));
     	$this->setMethod('post'); 
-    	$this->setAttrib('onsubmit','return checkPassConfirm()');
+    	$this->setAttrib('onsubmit','return validateForm()');
      	$this->setAction(Zend_Controller_Front::getInstance()->getBaseUrl().'/UsersManagement/add');
   	 
     }
