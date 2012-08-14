@@ -1,6 +1,6 @@
 <?php
 
-class UsersManagementControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
+class UsermanagementControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 {
 
     public function setUp()
@@ -11,7 +11,7 @@ class UsersManagementControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testIndexAction()
     {
-        $params = array('action' => 'index', 'controller' => 'UsersManagement', 'module' => 'default');
+        $params = array('action' => 'index', 'controller' => 'Usermanagement', 'module' => 'default');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -28,7 +28,7 @@ class UsersManagementControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testAddAction()
     {
-        $params = array('action' => 'add', 'controller' => 'UsersManagement', 'module' => 'default');
+        $params = array('action' => 'add', 'controller' => 'Usermanagement', 'module' => 'default');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -45,7 +45,7 @@ class UsersManagementControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testDeleteAction()
     {
-        $params = array('action' => 'delete', 'controller' => 'UsersManagement', 'module' => 'default');
+        $params = array('action' => 'delete', 'controller' => 'Usermanagement', 'module' => 'default');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -62,7 +62,7 @@ class UsersManagementControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testEditAction()
     {
-        $params = array('action' => 'edit', 'controller' => 'UsersManagement', 'module' => 'default');
+        $params = array('action' => 'edit', 'controller' => 'Usermanagement', 'module' => 'default');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -79,7 +79,7 @@ class UsersManagementControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testListAction()
     {
-        $params = array('action' => 'list', 'controller' => 'UsersManagement', 'module' => 'default');
+        $params = array('action' => 'list', 'controller' => 'Usermanagement', 'module' => 'default');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);

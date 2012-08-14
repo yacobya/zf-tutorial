@@ -50,7 +50,17 @@ class Application_Form_User extends Zend_Form
     	$this->addElements(array($id, $username, $password, $passwordValid,$roleSelect,$submitAddUser));
     	$this->setMethod('post'); 
     	$this->setAttrib('onsubmit','return validateForm()');
-     	$this->setAction(Zend_Controller_Front::getInstance()->getBaseUrl().'/UsersManagement/add');
-  	 
+    	
+    	$frontController=Zend_Controller_Front::getInstance();
+    	$baseUrl=$frontController->getBaseUrl();
+    	$viewer= Zend_Layout::getMvcInstance()->getView();
+    	$helper= $viewer->getHelper('BaseUrl');
+//    	$url1=$helper->url(array( 'controller' => 'Usersmanagement', 'action' => 'add'), null, true) ;
+    	$url2=$helper->getBaseUrl() . '/Usersmanagement/add';
+    	$addUseUrl=Zend_Controller_Front::getInstance()->getBaseUrl().'/Usersmanagement/add';  	
+     	$this->setAction($addUseUrl);
+     	$this->addElements(array($id, $username, $password, $passwordValid,$roleSelect,$submitAddUser));
+     	
     }
-} 		
+} 
+

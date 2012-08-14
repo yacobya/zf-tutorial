@@ -1,14 +1,16 @@
 <?php
 
-class UsersManagementController extends Zend_Controller_Action
+class UsersmanagementController extends Zend_Controller_Action
 {
 
     public function init()
     {
         /* Initialize context switch to manage AJAX requests*/
+    	
     	$ajaxContext = $this->_helper->getHelper('AjaxContext');
         $ajaxContext->addActionContext('add', 'json')
                      ->initContext();
+                     
     	
     }
 
@@ -23,26 +25,83 @@ class UsersManagementController extends Zend_Controller_Action
 
     public function addAction()
     {
-
-    	//Check if Ajax request
-    	$usersDb=null;	 
-    	$formData = $this->getRequest()->getPost();
-    	// check if ajax request - check user existance
-    	if ('json' == $this->_getParam('format', false))
+		$validData=true;
+    	if (!($this->getRequest()->isPost())) 
     	{
-    		$username=$this->_getParam('username',false);
-    		$usersDb = new Application_Model_DbTable_Users();
-    		$user=$usersDb->getUser('username',$username);
-    		if ($user!=null)
-    			// set user exist
-    			$userExist=true;
-    		else
-    			$userExist=false;
-    		$this->view->userExist=$userExist;  		
-    	}
-    	else
-    	{
-		    	 
+    		// no data posted, display add user form
+    		$form=new Application_Form_User();
+    		//    	$form->submit->setLabel('Add');
+    		$this->view->form = $form;
+       	}
+       	else
+       	{
+       		// data was posted
+       		$formData = $this->getRequest()->getPost();
+       		
+       		// check if ajax request 
+       		if ('json' == $this->_getParam('format', false))
+       		{
+       			//check user existance
+       			$username=$this->_getParam('username',false);
+       			
+       			// get user data from users DB
+       			$usersDb = new Application_Model_DbTable_Users();
+       			$user=$usersDb->getUser('username',$username);
+       			if ($user!=null)
+       				// set user exist
+       				$userExist=true;
+       			else
+       				$userExist=false;
+       			$this->view->userExist=$userExist;
+       		}
+       		else
+       		{// form submit action - established by user
+       			       			
+       			$form=new Application_Form_User();
+       			$formData = $this->getRequest()->getPost();// read input form data
+       			// check validation - filters       			
+       			if ($form->isValid($formData))
+       			{
+	       			$username = $form->getValue('username');
+	       			$userRole = $form->getValue('userRole');
+	       			$password = $form->getValue('password');
+	       			$passwordValid = $form->getValue('passwordValid');
+	       			// check password confirmation
+	       			if ((!strcmp($password, $passwordValid)) AND (!$usersDb->getUser('username',$username)))
+	       			{
+	       				// all data is valid - insert new user to DB
+	       				$users = new Application_Model_DbTable_Users();
+	       				$users->addUser($username, $password,$userRole);
+	       				$this->_helper->redirector('index');
+	       			}
+	       			else
+	       			{
+	       				$validData=false;
+	       				$errMsg='illegal user name or password';
+	       			}
+       			}
+       			else 
+       			{// data not valid
+       				$validData=false;
+       				$errMsg='illegal data';       				       				
+       			}
+	       			
+	       		if (!$validData)
+	       		{	
+	       				$this->view->errorMsg=$errMsg;
+	       				$form->populate($formData);			
+       			}
+       			
+       		}
+       			
+       	}
+       		 
+       		
+   }
+    		 
+/*
+ * 
+ 		    	 
 	    	$form=new Application_Form_User();
 	//    	$form->submit->setLabel('Add');
 	    	$this->view->form = $form;
@@ -75,6 +134,7 @@ class UsersManagementController extends Zend_Controller_Action
 	    	}// end isPost
     	}
     }
+    */
     public function deleteAction()
     {
     	//delete user

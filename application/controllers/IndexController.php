@@ -8,8 +8,11 @@ class IndexController extends Zend_Controller_Action
     {
         /* Initialize action controller here */
     	//get user name
-    	$this->_auth = Zend_Auth::getInstance();
-    	$this->username = $this->_auth->getStorage()->read()->username;
+    	if (!BYPASS_AUTHORIZATION) // bypass authorization and ACL for debug
+    	{
+    		$this->_auth = Zend_Auth::getInstance();
+    		$this->username = $this->_auth->getStorage()->read()->username;
+    	}
     	
     	 
     }

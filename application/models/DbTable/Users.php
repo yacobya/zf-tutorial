@@ -21,12 +21,13 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
     }
     public function getUser($key,$keyValue)
     {
-    	$userQuery= "$key = " . "$keyValue";
+    	$userQuery= $key. " = " . "'$keyValue'";
     	$row = $this->fetchRow($userQuery);
     	if (!$row) {
-    		throw new Exception("Could not find row $id");
+    		return null;
     	}
     	return $row->toArray();
+    	
     }
     public function addUser($username, $userPassword, $userRole)
     {
