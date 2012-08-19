@@ -9,7 +9,7 @@ defined('APPLICATION_ENV')
     || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
 
 //Define debug mode to bypass authorization and login
-define ("BYPASS_AUTHORIZATION", true);
+define ("BYPASS_AUTHORIZATION", false);
     
 // Ensure library/ is on include_path
 set_include_path(implode(PATH_SEPARATOR, array(

@@ -3,11 +3,11 @@
 	$this->title = "Add new User";
 	$this->headTitle($this->title);
 	echo $this->form;
-	$jsFile    ='/zf-tutorial/application/views/scripts/Usersmanagement/validateAddUserForm.js';
+//	echo "<$this->errorMsg;
+	$jsFile    ='/zf-tutorial/application/views/scripts/usersmanagement/validateAddUserForm.js';
 	$jqueryLib ='/zf-tutorial/library/JSLib/jquery-1.8.0.js';
-	
-	$this->headScript()->appendFile($jsFile);//java script to filter errors
 	$this->headScript()->appendFile($jqueryLib);//JQUERY library
+	$this->headScript()->appendFile($jsFile);//java script to filter errors
  
 	?>
 	<br>

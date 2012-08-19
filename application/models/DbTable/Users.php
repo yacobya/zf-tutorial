@@ -9,6 +9,22 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
     const INITIAL_SUPPER_USER_PASSWORD = 'admin';
     
     protected $passwordSalt='amrgi3009'; //using constant salt for users password
+  
+    
+    public function checkUserExist($username)
+    {
+  
+	    // get user data from users DB
+	    $user=$this->getUser('username',$username);
+	    if ($user!=null)
+	    	// set user exist
+	    	return true;
+	    else
+	    	return false;
+    }
+    
+    
+    
     
     public function getUserById($id)
     {

@@ -25,116 +25,60 @@ class UsersmanagementController extends Zend_Controller_Action
 
     public function addAction()
     {
+//    	$bodyTag= new Application_View_Helper_BodyTag();
+//    	$bodyTag->bodyTag('onload','doNothing()');
+    	
+    	
+    	
+    	$userDb=null;
 		$validData=true;
-    	if (!($this->getRequest()->isPost())) 
-    	{
-    		// no data posted, display add user form
-    		$form=new Application_Form_User();
-    		//    	$form->submit->setLabel('Add');
-    		$this->view->form = $form;
-       	}
-       	else
-       	{
-       		// data was posted
-       		$formData = $this->getRequest()->getPost();
+       	$form=new Application_Form_User();
+       	$usersDb = new Application_Model_DbTable_Users();
+		$errMsg=null;
+
+		
+		
+		if (!($this->getRequest()->isPost())) 
+    	{	// no data posted, display add user page
+//    		$form->setError("Hi this is an error");
+	    	$this->view->form = $form;
+//	    	$this->view->bodyTag = $bodyTag;
+	    	return;
+    	}
+    	//read posted data
+       	$formData = $this->getRequest()->getPost();// read form input data
        		
-       		// check if ajax request 
-       		if ('json' == $this->_getParam('format', false))
-       		{
-       			//check user existance
-       			$username=$this->_getParam('username',false);
-       			
-       			// get user data from users DB
-       			$usersDb = new Application_Model_DbTable_Users();
-       			$user=$usersDb->getUser('username',$username);
-       			if ($user!=null)
-       				// set user exist
-       				$userExist=true;
-       			else
-       				$userExist=false;
-       			$this->view->userExist=$userExist;
-       		}
-       		else
-       		{// form submit action - established by user
-       			       			
-       			$form=new Application_Form_User();
-       			$formData = $this->getRequest()->getPost();// read input form data
-       			// check validation - filters       			
-       			if ($form->isValid($formData))
-       			{
-	       			$username = $form->getValue('username');
-	       			$userRole = $form->getValue('userRole');
-	       			$password = $form->getValue('password');
-	       			$passwordValid = $form->getValue('passwordValid');
-	       			// check password confirmation
-	       			if ((!strcmp($password, $passwordValid)) AND (!$usersDb->getUser('username',$username)))
-	       			{
-	       				// all data is valid - insert new user to DB
-	       				$users = new Application_Model_DbTable_Users();
-	       				$users->addUser($username, $password,$userRole);
-	       				$this->_helper->redirector('index');
-	       			}
-	       			else
-	       			{
-	       				$validData=false;
-	       				$errMsg='illegal user name or password';
-	       			}
-       			}
-       			else 
-       			{// data not valid
-       				$validData=false;
-       				$errMsg='illegal data';       				       				
-       			}
-	       			
-	       		if (!$validData)
-	       		{	
-	       				$this->view->errorMsg=$errMsg;
-	       				$form->populate($formData);			
-       			}
-       			
-       		}
-       			
+       	// check if ajax request     		
+       	if ('json' == $this->_getParam('format', false))
+       	{   //check user existance
+			$username=$this->_getParam('username',false);
+       		$userExist=$userDb->checkUserExist($username);
+       		// return data to ajax
+       		$this->view->userExist=$userExist;
+       		return;
        	}
-       		 
-       		
+       	     			
+       	// form submit action - handle user request
+       	// check data validation
+       	$errStr = $form->dataValidation($formData);
+       	if ($errStr)
+       	{// data not valid
+       		$this->view->errorMsg=$errStr;
+     		$form->populate($formData);
+         	$form->setError($errStr);// populate before setting error (populate set the previouse data
+     		$this->view->form = $form;
+	    	return;
+       	}
+       	
+       	// all data is valid - insert new user to DB
+    	$password=$formData['password'];
+    	$username=$formData['username'];
+    	$userRole=$formData['userRole'];
+       	$usersDb->addUser($username, $password,$userRole);
+	    $this->_helper->redirector('index');// return to base users management page       				
    }
     		 
-/*
- * 
- 		    	 
-	    	$form=new Application_Form_User();
-	//    	$form->submit->setLabel('Add');
-	    	$this->view->form = $form;
-	    	$validData = false;
-	    	$formData = $this->getRequest()->getPost();
-	    	
-	    	if ($this->getRequest()->isPost()) {
-	    		$formData = $this->getRequest()->getPost();
-	    		if ($form->isValid($formData)) {
-	    			$username = $form->getValue('username');
-	    			$userRole = $form->getValue('userRole');
-	    			$password = $form->getValue('password');
-	    			$passwordValid = $form->getValue('passwordValid');
-	    			// Check password confirmation
-	    			if (!strcmp($password, $passwordValid)){
-	    				// all data is valid - insert new user to DB
-	    				$users = new Application_Model_DbTable_Users();
-	    				$users->addUser($username, $password,$userRole);
-	    				$validData=true;
-	    				$this->_helper->redirector('index');
-	    			
-	    			}
-	    				
-	    		} 
-	    		// check data valid
-	    		if (!$validData){
-	     			$this->view->errorMsg="<br>Password confirmation error<br>";
-	  				$form->populate($formData);
-	    		}
-	    	}// end isPost
-    	}
-    }
-    */
+   
     public function deleteAction()
     {
     	//delete user

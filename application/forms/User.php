@@ -1,9 +1,9 @@
 <?php
-
 class Application_Form_User extends Zend_Form
 {
-
-    public function init()
+	private $errorPopup;
+    
+	public function init()
     {
         /* Form Elements & Other Definitions Here ... */
     	$this->setName('users');
@@ -28,6 +28,10 @@ class Application_Form_User extends Zend_Form
     			 ->setRequired(true)
 		    	 ->addFilter('StripTags')
 		         ->addFilter('StringTrim');
+    	
+    	$this->errorPopup=new Zend_Form_Element_Hidden("errorPopup");
+    	$this->errorPopup->setAttrib('id','errorPopup');
+    	
     	 
     	$submitAddUser = new Zend_Form_Element_Submit('submit');
     	$submitAddUser->setAttrib('id', 'submitbutton');
@@ -47,20 +51,43 @@ class Application_Form_User extends Zend_Form
     			->setRequired(true);
     	  	
        	
-    	$this->addElements(array($id, $username, $password, $passwordValid,$roleSelect,$submitAddUser));
+    	$this->addElements(array($id, $username, $password, $passwordValid,$roleSelect,$submitAddUser,$this->errorPopup));
     	$this->setMethod('post'); 
     	$this->setAttrib('onsubmit','return validateForm()');
-    	
-    	$frontController=Zend_Controller_Front::getInstance();
-    	$baseUrl=$frontController->getBaseUrl();
-    	$viewer= Zend_Layout::getMvcInstance()->getView();
-    	$helper= $viewer->getHelper('BaseUrl');
-//    	$url1=$helper->url(array( 'controller' => 'Usersmanagement', 'action' => 'add'), null, true) ;
-    	$url2=$helper->getBaseUrl() . '/Usersmanagement/add';
     	$addUseUrl=Zend_Controller_Front::getInstance()->getBaseUrl().'/Usersmanagement/add';  	
      	$this->setAction($addUseUrl);
-     	$this->addElements(array($id, $username, $password, $passwordValid,$roleSelect,$submitAddUser));
-     	
+   	
     }
+
+    
+    public function dataValidation($formData)
+    {  	
+ 		$errStr=null;
+    	if (!$this->isValid($formData))
+    		return 'invalid data';
+    	$password=$formData['password'];
+    	$passwordValid=$formData['passwordValid'];
+ //   	$form->getValue('username')
+    	// data filters - valid
+    	// check password confirmation    	
+    	if (strcmp($password, $passwordValid)!=0){// string not equal
+    		return 'Password confirmation error';
+    	}
+    	//check user exist
+    	$userDb= new Application_Model_DbTable_Users();
+    	$username=$this->getValue('username');
+    	if ($username!=null)
+	   	 	if ($userDb->checkUserExist($this->getValue('username')))
+	    		return 'server: user already exist';	
+
+    	return null; // data is valid
+    }
+    public function setError ($errMsg)
+    {
+     	$this->errorPopup->setValue($errMsg);
+
+    }
+         			       				       			
+    
 } 
 
