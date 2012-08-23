@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<nav>
+		<login>
+			<label> Login </label>
+			<controller> authentication </controller>
+			<action>login</action>
+		</login>
+		<logout>
+			<label>Logout</label>
+			<controller> authentication </controller>
+			<action>logout</action>
+		</logout>
+		<configuration>
+			<usersManagement>
+				<label> Users Management </label>
+				<controller> usersmanagement </controller>
+				<action>index</action>
+				<add>
+					<label> Add User</label>
+					<controller> usersmanagement </controller>
+					<action>add</action>
+				</add>
+				<delete>
+					<label> Delete User</label>
+					<controller> usersmanagement </controller>
+					<action>delete</action>
+				</delete>
+			</usersManagement>
+			<projectors>
+				<label> Projectors </label>
+				<uri> # </uri>
+			</projectors>
+			<videoSources>
+				<label> Video Sources </label>
+				<uri> # </uri>
+			</videoSources>
+			<dvr> 
+				<label> DVR </label>
+				<uri> # </uri>
+			</dvr>
+				
+		</configuration>
+		<status>
+			<label> Status </label>
+			<uri> # </uri>
+		</status>
+		<setupscripts>
+			<label> Setup scripts </label>
+			<uri> # </uri>
+			<DVRrecording>
+				<label> DVR recordings </label>
+				<uri> # </uri>
+			</DVRrecording>
+			<virtualMatrix>
+				<label> Virtual Matrix </label>
+				<uri> # </uri>
+			</virtualMatrix>
+		</setupscripts>
+	</nav>
+</config>
