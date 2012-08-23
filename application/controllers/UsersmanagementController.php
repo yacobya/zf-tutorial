@@ -25,11 +25,7 @@ class UsersmanagementController extends Zend_Controller_Action
 
     public function addAction()
     {
-//    	$bodyTag= new Application_View_Helper_BodyTag();
-//    	$bodyTag->bodyTag('onload','doNothing()');
-    	
-    	
-    	
+        	
     	$userDb=null;
 		$validData=true;
        	$form=new Application_Form_User();
@@ -41,9 +37,11 @@ class UsersmanagementController extends Zend_Controller_Action
 		if (!($this->getRequest()->isPost())) 
     	{	// no data posted, display add user page
 //    		$form->setError("Hi this is an error");
+			$bodyTag=new Application_View_Helper_BodyTag();
+			$bodyTag->bodyTag('onclick', 'donothing()');
 	    	$this->view->form = $form;
-//	    	$this->view->bodyTag = $bodyTag;
-	    	return;
+	    	$this->view->bodyTag = $bodyTag;
+ 	    	return;
     	}
     	//read posted data
        	$formData = $this->getRequest()->getPost();// read form input data
@@ -98,12 +96,12 @@ class UsersmanagementController extends Zend_Controller_Action
     	}
     }
     
- public function editAction()
+	public function editAction()
     {
     	// action body
     }
     
-    public function listAction()
+  	public function listAction()
     {
         // action body
     }

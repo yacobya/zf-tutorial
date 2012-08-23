@@ -10,21 +10,28 @@ echo $this->doctype(); ?>
 <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/site.css'); ?>
 <?php echo $this->headScript(); // embedding Java script ?> 
 <?php
-/* 
-if (!is_null($this->bodyTag('onload', 'donothing()') )){
-	$bodyTag=$this->bodyTag('onload', 'donothing()');
-	$bodyStr=$this->bodyTag()->toString(Pro_View_Helper_BodyTag::CLOSE) . PHP_EOL;
-	echo "$this->bodyTag() . PHP_EOL";
+
+		
+?>
+</head>
+<body>
+<?php 
+/*
+if (!is_null($this->bodyTag())){
+	$str="$this->bodyTag()";
+//	$bodyTag=$this->bodyTag('onload', 'donothing()');
+//	$bodyStr=$this->bodyTag()->toString(Pro_View_Helper_BodyTag::CLOSE) . PHP_EOL;
+	$str= "$this->bodyTag() . PHP_EOL";
+}
+	
 }else
 {
 	echo'<head> <br>';
 }
 
 */
-		
 ?>
-</head>
-<body>
+
 <div id="content">
 <h1><?php echo $this->escape($this->title); ?></h1>
 <?php echo $this->layout()->content; ?>
