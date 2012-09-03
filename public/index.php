@@ -10,7 +10,9 @@ defined('APPLICATION_ENV')
 
 //Define debug mode to bypass authorization and login
 define ("BYPASS_AUTHORIZATION", false);
-    
+define ('APPLICATION_TITLE', 'Video Control Center');
+define ("DEVELOPMENT", true);// during development (for exampl: clear browser cache at bootstrap)
+
 // Ensure library/ is on include_path
 set_include_path(implode(PATH_SEPARATOR, array(
     realpath(APPLICATION_PATH . '/../library'),

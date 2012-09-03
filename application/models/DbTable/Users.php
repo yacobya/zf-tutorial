@@ -10,6 +10,19 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
     
     protected $passwordSalt='amrgi3009'; //using constant salt for users password
   
+
+    public function getUserRole($username)
+    {
+    
+    	// get user data from users DB
+    	$user=$this->getUser('username',$username);
+    	if ($user!=null)
+    		// set user exist
+    		return $user[role];
+    	else
+    		return null;
+    }
+    
     
     public function checkUserExist($username)
     {

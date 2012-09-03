@@ -3,7 +3,8 @@
 class IndexController extends Zend_Controller_Action
 {
 	private $_auth=null;
-	private $username=null;
+	private $_username=null;
+	private $_layout=null;
     public function init()
     {
         /* Initialize action controller here */
@@ -11,7 +12,16 @@ class IndexController extends Zend_Controller_Action
     	if (!BYPASS_AUTHORIZATION) // bypass authorization and ACL for debug
     	{
     		$this->_auth = Zend_Auth::getInstance();
-    		$this->username = $this->_auth->getStorage()->read()->username;
+    		$identity = $this->_auth->getStorage()->read();
+    		
+    		//assign username and role for layout header
+    		$this->_username = $identity->username;
+    		
+    		//get layout object
+    //		$_layout=Zend_Layout::getMvcInstance();
+    		//assign header data
+    	//	$_layout->assign('username',$identity->username);
+    		//$_layout->assign('role',$identity->role); 		    		   
     	}
     	
     	 
@@ -23,7 +33,7 @@ class IndexController extends Zend_Controller_Action
     	$albums = new Application_Model_DbTable_Albums();
     	$this->view->albums = $albums->fetchAll();
     	$this->_auth = Zend_Auth::getInstance();
-    	$this->view->user= $this->username;
+     	$this->view->user= $this->_username;
     		 
     }
 

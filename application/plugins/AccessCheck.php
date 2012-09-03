@@ -9,16 +9,27 @@ class Application_Plugin_AccessCheck extends Zend_Controller_Plugin_Abstract{
 	}
 	
 	public function preDispatch(Zend_Controller_Request_Abstract $request){
+		
+		$_layout=Zend_Layout::getMvcInstance();// get layout object
+		
 		// check if user already logged on
 		if (!($identity = $this->_auth->getStorage()->read())){ 
 			// user not logged - route to login page
+			$_layout->assign('controller','authentication');
+			$_layout->assign('action','login');
 			$request->setControllerName ('authentication')
 			->setActionName('login');
 			return;
 		}
-			
+		//add user login and role to layout
+		$_layout=Zend_Layout::getMvcInstance();// enter username and role to layout header
+		$_layout->assign('username',$identity->username);
+		$_layout->assign('role',$identity->role);
+		
 		//select controller ACL
 		$controllerName = $request->getControllerName();
+		$_layout->assign('controllerName',$controllerName);
+		$_layout->assign('actionName',$request->getActionName());
 		switch ($controllerName){
 			case 'index':
 				$this->_acl = new Application_Model_Acl_Albums();

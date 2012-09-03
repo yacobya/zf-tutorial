@@ -5,36 +5,50 @@ $this->headTitle('Video Control Center');
 echo $this->doctype(); ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<?php echo $this->headMeta(); ?>
-<?php echo $this->headTitle(); ?>
-<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/site.css'); ?>
-<?php echo $this->headScript(); // embedding Java script ?> 
 <?php
-
-		
-?>
+echo $this->headMeta();
+echo $this->headTitle(); 
+$tmp=$this->baseUrl().'/css/style .css';
+echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/style.css?'.date('l jS \of F Y h:i:s A')); // adding date to enforce css cache clear
+echo $this->headScript(); // embedding Java script 
+?> 
 </head>
+
 <body>
+<div id="outer">
+<div id="header" align="center"><?php echo $this->escape($this->title); ?>
 <?php 
-/*
-if (!is_null($this->bodyTag())){
-	$str="$this->bodyTag()";
-//	$bodyTag=$this->bodyTag('onload', 'donothing()');
-//	$bodyStr=$this->bodyTag()->toString(Pro_View_Helper_BodyTag::CLOSE) . PHP_EOL;
-	$str= "$this->bodyTag() . PHP_EOL";
-}
-	
-}else
-{
-	echo'<head> <br>';
-}
-
-*/
+$username=$this->escape($this->layout()->username);
+$userRole=$this->escape($this->layout()->role);
 ?>
-
+<table class="headerTable" style="float:left;">
+<tr>
+<td>User name:</td>
+<td><?php echo "$username";?></td>
+</tr>
+<tr>
+<td>Role:</td>
+<td><?php echo "$userRole";?></td>
+</tr>
+</table>	
+<h1> <?php echo APPLICATION_TITLE;?></h1>
+</div>
+<div id="bar"></div>
+<div id="bodyblock" align="right">
+<div id="column" align="left">
+<h4 align="center">Menu</h4>
+<?php echo $this->navigation();?>
+</div>
 <div id="content">
-<h1><?php echo $this->escape($this->title); ?></h1>
-<?php echo $this->layout()->content; ?>
+<?php 
+$controllerName =$this->escape($this->layout()->controllerName);
+$actionName=$this->escape($this->layout()->actionName);
+?>
+<h3 align="center"><?php echo "$controllerName : $actionName"; ?></h3>
+<?php echo $this->layout()->content;?>
+</div>
+<div id="footer" align="center"></div>
+</div>
 </div>
 </body>
 </html>
