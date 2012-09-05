@@ -77,21 +77,10 @@ class UsersmanagementController extends Zend_Controller_Action
    
     public function deleteAction()
     {
-    	//delete user
-    	if ($this->getRequest()->isPost()) { // user confirmed Yes/No
-    		$del = $this->getRequest()->getPost('del');
-    		if ($del == 'Yes') { // user confirm deletion
-    			$id = $this->getRequest()->getPost('id'); // get user ID
-    			$users = new Application_Model_DbTable_Users();
-    			$users->deleteUser('id',$id);
-    		}
-    		$this->_helper->redirector('index'); // redirect to main page
-    	} else { // display the confirmation form
-    		$userId = $this->_getParam('id', 0);// get userId
-    		$users = new Application_Model_DbTable_Users();
-    		$this->view->user = $users->getUser('id', $userId);// operate the view part of confirmation screen
-    		
-    	}
+     	$userId = $this->_getParam('id', 0);// get userId
+    	$users = new Application_Model_DbTable_Users();
+    	$users->deleteUser('id',$userId);  // delete user
+    	$this->_helper->redirector('index');// return to base users management page
     }
     
 	public function editAction()

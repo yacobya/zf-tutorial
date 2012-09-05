@@ -23,16 +23,27 @@ $userRole=$this->escape($this->layout()->role);
 ?>
 <table class="headerTable" style="float:left;">
 <tr>
-<td>User name:</td>
-<td><?php echo "$username";?></td>
+	<td>User name:</td>
+	<td><?php echo "$username";?></td>
 </tr>
 <tr>
-<td>Role:</td>
-<td><?php echo "$userRole";?></td>
+	<td>Role:</td>
+	<td><?php echo "$userRole";?></td>
 </tr>
-</table>	
+</table>
+
+<?php
+if ($username!=null)
+{
+	$loginUrl=$this->url(array('controller'=>'authentication','action'=>'logout'));
+	?>
+	<!--  confirm logout -->
+	 <a href=<?php echo $loginUrl;?>><button id='logoutBtn' 
+ 								  onClick="return confirm('Are you sure you want to logout?')">Logout</button></a>
+<?php 
+} ?>
 <h1> <?php echo APPLICATION_TITLE;?></h1>
-</div>
+</div> 
 <div id="bar"></div>
 <div id="bodyblock" align="right">
 <div id="column" align="left">

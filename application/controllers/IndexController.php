@@ -31,7 +31,7 @@ class IndexController extends Zend_Controller_Action
     {
     	// fetch all users from DB and send it to viewer
     	$albums = new Application_Model_DbTable_Albums();
-    	$this->view->albums = $albums->fetchAll();
+    	$this->view->albums = $albums->fetchAll(); // read all albums
     	$this->_auth = Zend_Auth::getInstance();
      	$this->view->user= $this->_username;
     		 

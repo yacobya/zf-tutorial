@@ -13,7 +13,8 @@ $this->headTitle($this->title);
 <td><?php echo $this->escape($user->role);?></td>
 <td>
 <a href="<?php echo $this->url(array('controller'=>'Usersmanagement',
-'action'=>'delete', 'id'=>$user->id));?>">Delete</a>
+'action'=>'delete', 'id'=>$user->id));?>" onClick=
+          "return confirm('Are you sure you want to delete user: <?php echo $user->username;?>?')">Delete</a>
 </td>
 </tr>
 <?php endforeach; ?>

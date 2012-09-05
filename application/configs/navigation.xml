@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<nav>
-		<login>
-			<label> Login </label>
-			<controller>authentication</controller>
-			<action>login</action>
-		</login>
-		<logout>
-			<label>Logout</label>
-			<controller>authentication</controller>
-			<action>logout</action>
-		</logout>
 		<configuration>
 			<label> Configuration </label>
 			<uri> # </uri>
@@ -19,18 +9,6 @@
 					<label> Users Management </label>
 					<controller>usersmanagement</controller>
 					<action>index</action>
-					<pages>
-						<add>
-							<label> Add User</label>
-							<controller>usersmanagement</controller>
-							<action>add</action>
-						</add>
-						<delete>
-							<label> Delete User</label>
-							<controller>usersmanagement</controller>
-							<action>delete</action>
-						</delete>
-					</pages>
 				</usersManagement>
 				<projectors>
 					<label> Projectors </label>
