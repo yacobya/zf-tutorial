@@ -28,8 +28,12 @@ class Application_Plugin_AccessCheck extends Zend_Controller_Plugin_Abstract{
 		
 		//select controller ACL
 		$controllerName = $request->getControllerName();
-		$_layout->assign('controllerName',$controllerName);
-		$_layout->assign('actionName',$request->getActionName());
+		$actionName=$request->getActionName();
+		$_layout->assign('controller',$controllerName);
+		$_layout->assign('action',$actionName);
+				
+		//$_layout->assign('contentHeader',$this->getContentHeader($controllerName,$actionName ));
+		
 		switch ($controllerName){
 			case 'index':
 				$this->_acl = new Application_Model_Acl_Albums();
@@ -42,14 +46,38 @@ class Application_Plugin_AccessCheck extends Zend_Controller_Plugin_Abstract{
 				return;
 		}
 		
+		//get request source in order to return to it
+				
 		//check autorization
 		$action = $request->getActionName();
 		if (!$this->_acl->isAllowed($identity->role, $controllerName, $action)){
-			// user not authorized
-			$request->setControllerName ('authentication')
-			->setActionName('login');
+			// user not authorized - do nothing
+			$requestSource=$this->getRequestSource($request);
+				
+			$request->setControllerName ($requestSource['controller'])
+	  				->setActionName($requestSource['action']);
+			return;
 		}
 	}
+	
+	private function getRequestSource($request)
+	{
+		if ($request->isPost())
+		{
+			$data = $request->getPost();
+			$requestSource['controller']=$data->getValue('sourceController');
+			$requestSource['action']=$data->getValue('sourceAction');
+		}
+		else
+		{
+			$requestSource['controller']='authentication';
+			$requestSource['action']='login';
+		}
+		
+	}
+	
+	
+	
 /*	public function postDispatch(){
 		echo 'post disatch <br>';
 	}

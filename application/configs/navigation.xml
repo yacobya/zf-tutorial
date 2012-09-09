@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<nav>
+		<status>
+			<label> Status </label>
+     		<controller>index</controller>
+	   		<action>index</action>
+		</status>
+	
 		<configuration>
 			<label> Configuration </label>
 			<uri> # </uri>
@@ -24,10 +30,6 @@
 				</dvr>
 			</pages>
 		</configuration>
-		<status>
-			<label> Status </label>
-			<uri> # </uri>
-		</status>
 		<setupscripts>
 			<label> Setup scripts </label>
 			<uri> # </uri>

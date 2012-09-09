@@ -20,6 +20,7 @@ echo $this->headScript(); // embedding Java script
 <?php 
 $username=$this->escape($this->layout()->username);
 $userRole=$this->escape($this->layout()->role);
+$contentHeader=$this->escape($this->layout()->header);
 ?>
 <table class="headerTable" style="float:left;">
 <tr>
@@ -52,10 +53,19 @@ if ($username!=null)
 </div>
 <div id="content">
 <?php 
-$controllerName =$this->escape($this->layout()->controllerName);
-$actionName=$this->escape($this->layout()->actionName);
+$controllerName =$this->escape($this->layout()->controller);
+$actionName=$this->escape($this->layout()->action);
+$contentHeader=$this->escape($this->layout()->contentHeader);
+require_once(APPLICATION_PATH.'/configs/contentHeader.php');
+//echo "$controllerName  $actionName";
+$header=$contentHeader[strtolower($controllerName)][strtolower($actionName)];
 ?>
-<h3 align="center"><?php echo "$controllerName : $actionName"; ?></h3>
+<!-- hidden fields - controller and action -->
+<form method='post'>
+<input type="hidden" name="sourceController" value="<?php echo "$controllerName"; ?>"></input>
+<input type="hidden" name="sourceAction" value="<?php echo "$actionName"; ?>"></input>
+</form>
+<h3 align="center"><?php echo "$header"; ?></h3>
 <?php echo $this->layout()->content;?>
 </div>
 <div id="footer" align="center"></div>

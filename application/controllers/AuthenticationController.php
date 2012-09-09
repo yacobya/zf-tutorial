@@ -32,7 +32,7 @@ class AuthenticationController extends Zend_Controller_Action
     	// determine if POST perfromed
     	if ($this->getRequest()->isPost() ){
     		if ($form->isValid($this->_request->getPost())){
-
+ 
     			//user tried to login. Check authoentication
     			// read assigned username and password
     			$username = $form->getValue('username');

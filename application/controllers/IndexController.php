@@ -29,11 +29,15 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-    	// fetch all users from DB and send it to viewer
+    	// CC Center status view
+    	/*
     	$albums = new Application_Model_DbTable_Albums();
     	$this->view->albums = $albums->fetchAll(); // read all albums
+    	*/
     	$this->_auth = Zend_Auth::getInstance();
      	$this->view->user= $this->_username;
+     	$this->view->header='This is the video control center status view';
+ 
     		 
     }
 
