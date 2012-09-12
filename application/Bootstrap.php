@@ -16,6 +16,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$navContainer = new Zend_Navigation($navContainerConfig);
 		$view->navigation($navContainer);		
 	} 
-	
+
 }
 

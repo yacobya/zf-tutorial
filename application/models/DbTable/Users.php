@@ -9,7 +9,6 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
     const INITIAL_SUPPER_USER_PASSWORD = 'admin';
     
     protected $passwordSalt='amrgi3009'; //using constant salt for users password
-  
 
     public function getUserRole($username)
     {
@@ -82,6 +81,8 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
     
     public function initSuperUser ()
     {
+    	$dbAdapter=$this->getDefaultAdapter();
+    	$dbAdapter = Zend_Db_Table::getDefaultAdapter();
     	$queryRow='username =' . "'".self::INITIAL_SUPPER_USER_NAME . "'";
      	$row = $this->fetchRow($queryRow);
     	if (!$row){

@@ -22,7 +22,8 @@
 				</projectors>
 				<videoSources>
 					<label> Video Sources </label>
-					<uri> # </uri>
+					<controller>config</controller>
+					<action>listSources</action>
 				</videoSources>
 				<dvr> 
 					<label> DVR </label>
