@@ -72,11 +72,13 @@ class Application_Form_addVideoSource extends Application_Model_Form_ProjectForm
 		foreach ($buttons as $button)
 		{
 			$submitButton = new Zend_Form_Element_Button("$button");
-			$submitButton->setAttrib('type', "submit");
-			$submitButton->setAttrib('id', "$button");
-//			$submitButton->setAttrib('value', "$button");
-			$submitButton->setLabel("$button");
-			$submitButton->setValue("$button");
+			$submitButton->setAttrib('type', "submit")
+			              ->setAttrib('id', "$button")
+						  ->setAttrib('class', "addVideoSourceBtn")
+			              //					      ->class('addVideoSourceBtn')
+			              ->setLabel("$button")
+						  ->setValue("$button");
+						
 			$this->_formElements[]=$submitButton;
 		}
 		
