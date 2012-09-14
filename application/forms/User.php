@@ -99,12 +99,13 @@ class Application_Form_User extends Application_Model_Form_ProjectForm
 
     	return null; // data is valid
     }
+    
     public function setError ($errMsg)
     {
-     	$this->errorPopup->setValue($errMsg);
-
-    }
-         			       				       			
+    	$this->errorPopup->setValue($errMsg);
     
+    }
+    
+         			       				       			    
 } 
 

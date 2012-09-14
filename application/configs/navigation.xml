@@ -23,7 +23,7 @@
 				<videoSources>
 					<label> Video Sources </label>
 					<controller>config</controller>
-					<action>listSources</action>
+					<action>listsources</action>
 				</videoSources>
 				<dvr> 
 					<label> DVR </label>

@@ -2,6 +2,7 @@
 class Application_Model_Form_ProjectForm extends Zend_Form
  {
 	protected $_formElements=array();
+	
 	public function __construct(){
 		$this->initForm();
 		parent::__construct();
@@ -31,6 +32,19 @@ class Application_Model_Form_ProjectForm extends Zend_Form
 		->setValue('avi action');
 		$this->_formElements[]=$sourceAction;
 		
+		// add error popup hidden field to be used by Javascript to popup error reprted by server
+		//error text to be used by JS to popup error
+		$this_errorPopup=new Zend_Form_Element_Hidden("errorPopup");
+		$this_errorPopup->setAttrib('id','errorPopup');
+		$this->_formElements[]=$this_errorPopup;
+		
 	}
+	public function setError ($errMsg)
+	{
+		$this->_errorPopup->setValue($errMsg);
+	
+	}
+	
+	
 		
 }
