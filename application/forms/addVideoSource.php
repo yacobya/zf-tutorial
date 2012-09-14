@@ -75,7 +75,6 @@ class Application_Form_addVideoSource extends Application_Model_Form_ProjectForm
 			$submitButton->setAttrib('type', "submit")
 			              ->setAttrib('id', "$button")
 						  ->setAttrib('class', "addVideoSourceBtn")
-			              //					      ->class('addVideoSourceBtn')
 			              ->setLabel("$button")
 						  ->setValue("$button");
 						
@@ -88,8 +87,8 @@ class Application_Form_addVideoSource extends Application_Model_Form_ProjectForm
 		$this->addElements($this->_formElements);
 		$this->setMethod('post');
 //		$this->setAttrib('onsubmit','return validateForm()');// JS check form
-		$addVideoSourceUrl=Zend_Controller_Front::getInstance()->getBaseUrl().'/Config/addsource';
-		$this->setAction($addVideoSourceUrl);
+		$listVideoSourceUrl=Zend_Controller_Front::getInstance()->getBaseUrl().'/Config/listsources';
+		$this->setAction($listVideoSourceUrl);
 
 		
 		
