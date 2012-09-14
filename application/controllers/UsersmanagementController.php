@@ -36,9 +36,10 @@ class UsersmanagementController extends Zend_Controller_Action
     	{	// no data posted, display add user page
 //    		$form->setError("Hi this is an error");
 			$bodyTag=new Application_View_Helper_BodyTag();
-			$bodyTag->bodyTag('onclick', 'donothing()');
+			$bodyTag->bodyTag('onclick', 'donothing()');					
 	    	$this->view->form = $form;
 	    	$this->view->bodyTag = $bodyTag;
+	    	
  	    	return;
     	}
     	//read posted data
