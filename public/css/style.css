@@ -1,0 +1,114 @@
+
+/* Layout Stylesheet */ 
+
+body {
+ height:100ex;
+ margin:20px;
+ background:#9999ff;
+ color: #333333;
+ text-align:center;
+ padding:0;
+ }
+
+#outer {
+ text-align:left;
+ border:1px solid #000000;
+ width:100%;
+ height:100%;
+ }
+
+#header {
+ height:80px;
+ background:#eeeeee;
+ color: #333333;
+ margin-top:0;
+ }
+#logoutBtn{
+float:right;
+color:red;
+font-size:20px;
+width:80px;
+border-color:black;	
+margin:15px;
+}
+
+table.headerTable
+{
+	font-size:20px;
+}
+table.headerTable
+{
+	margin-left:10px;
+}
+#bar {
+ height:25px;
+ background:#c0c0c0;
+ color: #333333;
+ border:solid #000000;	
+ border-width:1px 0 1px 0;
+ }
+
+#bodyblock {
+ position:relative;
+ background: #dcdcdc;
+ color: #333333;
+ width:100%;
+ height:100%;
+ padding:0;
+ }
+
+#column {
+ float:left;
+ width:30ex;
+ margin-right:20px;
+ background:#dcdcdc;
+ color: #333333;
+ height:100%;
+ font-size:20px;
+ }
+
+#content {
+ margin-left:40px;
+ background:white;
+ color: #333333;
+ border:solid #000000;	
+ border-width:0 0 0 1px;
+ text-align:left;
+ height:100%;
+ width:90%;
+ font-size:20px;
+ }
+
+#footer {
+ height:25px;
+ background:#c0c0c0;
+ color: #333333;
+ border:solid black;
+ border-width:1px 0 0 0;
+ margin:0;
+ }
+
+
+
+/* Presentation Stylesheet */ 
+
+h3, p {
+ margin:0;
+ padding:15px;
+ }
+
+h4 {
+ margin:0; 
+ padding: 5px 0;
+ }
+ 
+p:first-letter {
+ font-size: 80%; 
+ font-weight: bold;
+ color:blue;
+ } 
+ 
+.videoSourceTd  {
+	padding:1px 10px 5px 20px;
+
+}

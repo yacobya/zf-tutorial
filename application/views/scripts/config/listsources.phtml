@@ -1,0 +1,39 @@
+<br /><br />
+<div id="listsources">
+<?php
+$this->title = "Video sources";
+$this->headTitle($this->title);
+?>
+<div id="videoSourceTable">
+<table class="videoSourceTable">
+<tr>
+<th  class="videoSourceTd">Name</th>
+<th  class="videoSourceTd">Description</th>
+<th  class="videoSourceTd">IP address</th>
+<th  class="videoSourceTd" style="align:center;">frames per <br> second</th>
+<th  class="videoSourceTd">MBR</th>
+</tr>
+<?php $tdStr="<td class='videoSourceTd'>";?>
+<?php foreach($this->videoSources as $source) : ?>
+<tr>
+<td class="videoSourceTd"><?php echo $this->escape($source['name']);?> </td>
+<td class="videoSourceTd"><?php echo $this->escape($source['description']);?></td>
+<td class="videoSourceTd"><?php echo $this->escape(long2IP($source['encoder_IP']));?></td>
+<td class="videoSourceTd" style="align:center;"><?php echo $this->escape($source['encoder_fps']);?></td>
+<td class="videoSourceTd"><?php echo $this->escape($source['encoder_MBR']);?></td>
+<td>
+<a style="padding-right:15px;" href="<?php echo $this->url(array('controller'=>'Config',
+			    	'action'=>'deleteSource', 'id'=>$source['id']));?>" onClick=
+    		        "return confirm('Are you sure you want to delete source <?php echo $source['name'];?>?')">Delete</a>
+</td>
+<td>
+<a href="<?php echo $this->url(array('controller'=>'Config','action'=>'addsource', 'id'=>$source['id']));?>"> Add/Edit </a>
+</td>
+<td>
+
+</td>
+</tr>
+<?php endforeach; ?>
+</table>
+</div>
+</div>
