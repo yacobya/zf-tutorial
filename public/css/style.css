@@ -112,3 +112,11 @@ p:first-letter {
 	padding:1px 10px 5px 20px;
 
 }
+.addVideoSourceBtn{
+width:100px;
+color:blue;
+font-weight:bold;
+float:left;
+display:block;	
+}
+
