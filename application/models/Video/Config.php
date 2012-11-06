@@ -1,5 +1,5 @@
 <?php
-class Application_Model_Video_Config
+class Application_Model_Video_Config extends Application_Model_DbTable_ConfigAbstract
 {
 	// interface type =>horizontal pixels, vertical pixels,
 	
@@ -22,7 +22,16 @@ class Application_Model_Video_Config
 									 'resolution'=>'1280:720','aspect_ratio'=>'16:9','encoder_IP'=>0,
 									 'encoder_fps'=>20,'encoder_MBR'=>10);
 			
-	public function getVideoSourcesDBSchema ($tableName)
+	/**
+	 *  public function returns video source table schema
+	 *
+	 *  returns an SQL command that create video source table if not exists
+
+	 *
+	 * @param  string                   $tableName   table name
+	 * @return string                   $videoSourceSchema string identify SQL command for table creation
+	*/
+	public function getDBSchema ($tableName)
 	{	
 		// create ENUM values for SQL create table - list of availiable video I/F and aspect ratio
 		$videoInputENUM=$this->createENUMstr($this->connection);
@@ -48,17 +57,7 @@ class Application_Model_Video_Config
 	{
 		return ($this->$defaultVideoSource);
 	}
-	
-	
- 	private function createENUMstr($strArray)
-	{
-		$str=null;
-		foreach ($strArray as $key=>$value)
-			$str=$str . "'$key'" .',';
-		if ($str!=null)
-			$str[strlen($str)-1]=' ';// //delete the last comma
-		return $str;
-	} 
+		
 	/**
 	 * dataValidation
 	 *

@@ -1,13 +1,28 @@
 <?php
+/**
+ * Access-check ZF plugin CLASS
+ * 
+ * 
+ *  
+ * @author Avi Yacoby
+ *
+ */
 class Application_Plugin_AccessCheck extends Zend_Controller_Plugin_Abstract{
 	private $_acl=null;
 	private $_auth=null;
 	private $_controller =null;
-	
+	/**
+	 * Class constructor, reads zend authorization instance
+	 */
 	public function __construct(){
 		$this->_auth = Zend_Auth::getInstance();
 	}
-	
+	/**
+	 * access control pre-dispatch function
+	 * 
+	 * if user is not logined, route the system to login form. 
+	 * @param Zend_Controller_Request_Abstract $request
+	 */
 	public function preDispatch(Zend_Controller_Request_Abstract $request){
 		
 		$_layout=Zend_Layout::getMvcInstance();// get layout object
@@ -21,8 +36,7 @@ class Application_Plugin_AccessCheck extends Zend_Controller_Plugin_Abstract{
 			->setActionName('login');
 			return;
 		}
-		//add user login and role to layout
-		$_layout=Zend_Layout::getMvcInstance();// enter username and role to layout header
+		// enter username and role to layout header
 		$_layout->assign('username',$identity->username);
 		$_layout->assign('role',$identity->role);
 		
@@ -51,7 +65,7 @@ class Application_Plugin_AccessCheck extends Zend_Controller_Plugin_Abstract{
 		//check autorization
 		$action = $request->getActionName();
 		if (!$this->_acl->isAllowed($identity->role, $controllerName, $action)){
-			// user not authorized - do nothing
+			// user not authorized - do nothing remain in caller controller and action
 			$requestSource=$this->getRequestSource($request);
 				
 			$request->setControllerName ($requestSource['controller'])

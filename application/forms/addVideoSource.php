@@ -15,7 +15,7 @@ class Application_Form_addVideoSource extends Application_Model_Form_ProjectForm
 
 		$this->setName('videoSources');
 	
-		//source id hiddent field
+		//source id hidden field
 		$element=$this->addFormElement('id',null,'Hidden',null,array('Int'),null);
 		$this->_formElements[]=$element;
 	
@@ -87,7 +87,7 @@ class Application_Form_addVideoSource extends Application_Model_Form_ProjectForm
 		$this->addElements($this->_formElements);
 		$this->setMethod('post');
 //		$this->setAttrib('onsubmit','return validateForm()');// JS check form
-		$listVideoSourceUrl=Zend_Controller_Front::getInstance()->getBaseUrl().'/Config/listsources';
+		$listVideoSourceUrl=Zend_Controller_Front::getInstance()->getBaseUrl().'/Config/addsource';
 		$this->setAction($listVideoSourceUrl);
 
 		

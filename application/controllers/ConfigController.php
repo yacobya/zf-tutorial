@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * CC Center configuration controller
+ * 
+ * Manage video source, projectors, DVR and users configuration 
+ * 
+ * @author Avi Yacoby
+ *
+ */
 class ConfigController extends Zend_Controller_Action
 {
 	private $_videoSourceDb;
@@ -27,14 +34,14 @@ class ConfigController extends Zend_Controller_Action
     
     public function addsourceAction()
     {
-    	$this->view->text="This is add source action";
+ //    	$this->view->text="This is add source action";
     	$form=new Application_Form_addVideoSource; // form 
     	$formHelper=new Application_Model_Actions_addElement; // general add element form
     	$videoSourceModel= new Application_Model_Video_Config; // video source model:data, validation,...
     	$sourceId = $this->_getParam('id', 0);// get userId  	   
     	$result=$formHelper->addElement($this, $this->_videoSourceDb, $form, $videoSourceModel,$sourceId);
-    	if ($result=='Cancel')
-    		$this->_helper->redirector('listsources');// return to base users management page
+    	if (($result!='Error')&&($result!='DisplayForm'))
+    		$this->_helper->redirector('listsources');// return tosource list page
     }
 
     public function listsourcesAction()
@@ -49,7 +56,7 @@ class ConfigController extends Zend_Controller_Action
     {
         // action body
     }
-
+   
     public function listDisplayAction()
     {
         // action body

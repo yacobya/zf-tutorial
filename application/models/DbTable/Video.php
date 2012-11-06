@@ -14,7 +14,7 @@ class Application_Model_DbTable_Video extends Zend_Db_Table_Abstract
 		//$dbAdapter=getAdapter();
 		$this->_dbAdapter=$this->getDefaultAdapter();
 		$this->_dbConfig=new Application_Model_Video_Config();
-		$sqlCreateTable=$this->_dbConfig->getVideoSourcesDBSchema($this->_name);
+		$sqlCreateTable=$this->_dbConfig->getDBSchema($this->_name);
 		$this->_dbh=$this->_dbAdapter->getConnection();
 		$result = $this->_dbAdapter->getConnection()->exec($sqlCreateTable);// create table if not exist
 		parent::__construct();

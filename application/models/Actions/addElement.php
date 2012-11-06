@@ -1,16 +1,38 @@
 <?php
+/**
+ * Generic add element form management class
+ * 
+ * 
+ * @author Avi Yacoby
+ *
+ */
 class Application_Model_Actions_addElement
 {
 	private $_dataModel;// element data modeldata model
-	
+
+	/**
+	 * 
+	 * @param unknown_type $dbHandle
+	 * @param unknown_type $form
+	 */
 	public function init ($dbHandle, $form)
 	{
 		
 	}
+	/**
+	 * generic add element function
+	 * 
+	 * Check state: if data is not posted, create add element   
+	 *   
+	 * @param controller-action $frontController the called controller and action
+	 * @param unknown_type $dbHandle database table manager class 
+	 * @param zend-form $form zend framework form object
+	 * @param unknown_type $dataModel object represents the DB table data model 
+	 * @param unknown_type $sourceId
+	 * @return void|string 'Cancel' if cancel was pushed, 'Error' if data validation failed, 'Saved' if data was saved successfully, 'DisplayForm' to display add element form
+	 */
 	public function addElement(&$frontController ,$dbHandle, &$form,$dataModel,$sourceId)
 	{
-		$validData=true;
-
 		$validData=true;
 		$errMsg=null;
 		$this->_dataModel=$dataModel;
@@ -26,7 +48,7 @@ class Application_Model_Actions_addElement
 			$form->populate($formData);
 			$frontController->view->form = $form;
 			$frontController->view->bodyTag = $bodyTag;
-			return;
+			return 'DisplayForm';
 		}
 		//read posted data
 		$formData = $frontController->getRequest()->getPost();// read form input data
@@ -38,13 +60,13 @@ class Application_Model_Actions_addElement
 							
 		// check data validation support add or insert data
 		$errStr = $this->_dataModel->dataValidation($form,$formData);
-		 if ($errStr)
+		if ($errStr)
 		{// data not valid
 			$frontController->view->errorMsg=$errStr;
 			$form->populate($formData);
 			$form->setError($errStr);// populate before setting error (populate set the previouse data
 			$frontController->view->form = $form;
-			return;
+			return 'Error';
 		}
 		
 		// all data is valid - insert new element to DB
@@ -55,6 +77,7 @@ class Application_Model_Actions_addElement
 			$dbHandle->addVideoSource($formData,'id',$formData['id']);		
 		else // "sava as" was pushed"
 			$dbHandle->addVideoSource($formData,null,null);
+		return 'Saved';
 	}
 
 
@@ -72,7 +95,7 @@ private function convertDbToForm($videoSourceData,$id)
 	$formData['Saveas']='';
 	$formData['encoder_IP']=long2ip($formData['encoder_IP']);
 	return $formData;
-
+}
 		
 		/*
 		Data from $formdata
@@ -105,5 +128,4 @@ private function convertDbToForm($videoSourceData,$id)
 			encoder_MBR	(string:2) 20	
 		
 		*/
-	}
 }

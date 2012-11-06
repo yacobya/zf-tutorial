@@ -7,6 +7,8 @@ class AuthenticationController extends Zend_Controller_Action
     public function init()
     {
         /* Initialize action controller here */
+    
+    	
     }
 
     public function indexAction()
@@ -25,8 +27,6 @@ class AuthenticationController extends Zend_Controller_Action
     	//user is not logged yet
     	// check users DB content, if empty create user "admin"
     	$usersDb = new Application_Model_DbTable_Users();
-    	$usersDb->initUsers();// check if empty--> create admin default user
-
     	$form= new Application_Form_Login();// create login form
     	
     	// determine if POST perfromed
