@@ -40,6 +40,7 @@ class ConfigController extends Zend_Controller_Action
     	$videoSourceModel= new Application_Model_Video_Config; // video source model:data, validation,...
     	$sourceId = $this->_getParam('id', 0);// get userId  	   
     	$result=$formHelper->addElement($this, $this->_videoSourceDb, $form, $videoSourceModel,$sourceId);
+    	// redrirect to video source list page
     	if (($result!='Error')&&($result!='DisplayForm'))
     		$this->_helper->redirector('listsources');// return tosource list page
     }

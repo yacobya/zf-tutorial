@@ -1,16 +1,32 @@
 <?php
+/**
+ * project form class
+ * 
+ * Derived from Zend form. Add to base class the hidden elements identifying source controller and action, set error if indicated 
+ * to be displayed by form js.
+ * @author Avi Yacoby
+ *
+ */
 class Application_Model_Form_ProjectForm extends Zend_Form
  {
 	protected $_formElements=array();
-	
+	/**
+	 * Constructor, initialize the form 
+	 */
 	public function __construct(){
 		$this->initForm();
 		parent::__construct();
 		//insert hidden fields - controller and action
 	}
+	/**
+	 * initialize the form
+	 * 
+	 * adding hidden elements identifying source controller and action - - enable to return to caller page. Create hidden element idefying
+	 * error identified mainly during server side data validation.
+	 */
 	protected function initForm()
 	{
-		//add hidden controller and action names - enable to return to caller page
+		//add hidden controller and action names
 		// 
 		$sourceController = new Zend_Form_Element_Hidden('sourceController');
 		$sourceController->setRequired(true)
@@ -39,12 +55,13 @@ class Application_Model_Form_ProjectForm extends Zend_Form
 		$this->_formElements[]=$this_errorPopup;
 		
 	}
+	/**
+	 * Set error values
+	 * @param string $errMsg
+	 */
 	public function setError ($errMsg)
 	{
 		$this->_errorPopup->setValue($errMsg);
 	
 	}
-	
-	
-		
-}
+ }
