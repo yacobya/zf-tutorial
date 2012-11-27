@@ -58,15 +58,7 @@ class Application_Form_addVideoSource extends Application_Model_Form_ProjectForm
 		$element=$this->addFormElement('encoder_MBR','Encoder MBR (4-60)','Text',null,
 				array('StripTags','Digits'),array('Digits'));// create element
 		$this->_formElements[]=$element;
-		
-		
-		//error text to be used by JS to popup error
-		$this->errorPopup=new Zend_Form_Element_Hidden("errorPopup");
-		$this->errorPopup->setAttrib('id','errorPopup');
-		$this->_formElements[]=$this->errorPopup;
-	
-		
-	
+			
 		// add video source submit buttons
 		$buttons=array('Save', 'Save as','Cancel');
 		foreach ($buttons as $button)
@@ -136,18 +128,4 @@ class Application_Form_addVideoSource extends Application_Model_Form_ProjectForm
 		if ($validators!=null) foreach ($validators as $validator) $element->addValidator($validator);// add filters
 		return $element;		
 	}
-	/**
-	 * dataValidation
-	 *
-	 * validate data that can not be validate by standar filters and validators 
-	 *
-	 * @param  formData                 $formData form data that was subbmitted by user  
-	 * @return string                   $errStr  null if ok else error string describing the problem
-	 */
-	public function setError ($errMsg)
-	{
-		$this->errorPopup->setValue($errMsg);
-	
-	}
-	
 }

@@ -9,6 +9,8 @@
  */
 class Application_Model_Form_ProjectForm extends Zend_Form
  {
+ 	protected $_errorPopup;
+
 	protected $_formElements=array();
 	/**
 	 * Constructor, initialize the form 
@@ -50,12 +52,13 @@ class Application_Model_Form_ProjectForm extends Zend_Form
 		
 		// add error popup hidden field to be used by Javascript to popup error reprted by server
 		//error text to be used by JS to popup error
-		$this_errorPopup=new Zend_Form_Element_Hidden("errorPopup");
-		$this_errorPopup->setAttrib('id','errorPopup');
-		$this->_formElements[]=$this_errorPopup;
+		$this->_errorPopup=new Zend_Form_Element_Hidden("errorPopup");
+		$this->_errorPopup->setAttrib('id','errorPopup')
+						  ->setValue(null);
+		$this->_formElements[]=$this->_errorPopup;
 		
 	}
-	/**
+	/** 
 	 * Set error values
 	 * @param string $errMsg
 	 */

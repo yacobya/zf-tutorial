@@ -89,7 +89,6 @@ class Application_Model_Actions_addElement
 	
 	private function setPopulateError (&$form, &$frontController,$formData,$errMsg)
 	{
-		$frontController->view->errorMsg=$errMsg;
 		$form->populate($formData);
 		$form->setError($errMsg);// populate before setting error (populate set the previouse data
 		$frontController->view->form = $form;
